@@ -1,0 +1,6 @@
+* setup-sparqlwrapper
+  DBpediaやローカル環境に構築されているapache jena fusekiにSPARQLクエリをリクエストし、レスポンスを受け取る環境を構築します。
+** 前提
+** pythonのインストール
+   最新安定版のpythonを専用の環境にインストールします。
+** pythonの仮想環境のセットアップ
