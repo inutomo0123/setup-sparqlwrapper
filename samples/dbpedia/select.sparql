@@ -1,0 +1,11 @@
+PREFIX dbr: <http://ja.dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX prop-ja: <http://ja.dbpedia.org/property/>
+
+SELECT ?o ?label
+WHERE {
+    dbr:{{s}} dbo:{{p}} ?o.
+    ?o rdfs:label ?label.
+} ORDER BY RAND() LIMIT 1

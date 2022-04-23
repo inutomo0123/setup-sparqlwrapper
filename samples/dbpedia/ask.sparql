@@ -1,0 +1,9 @@
+PREFIX dbr: <http://ja.dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX prop-ja: <http://ja.dbpedia.org/property/>
+
+ASK
+WHERE {
+	    dbr:{{s}} dbo:{{p}} ?o.
+}

@@ -1,0 +1,15 @@
+PREFIX dbr: <http://ja.dbpedia.org/resource/>
+PREFIX dbo: <http://dbpedia.org/notology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdr-syntax-ns#>
+PREFIX prop-ja: <http://ja.dbpedia.org/property/>
+
+INSERT {
+    GRAPH <http://localhost:3030/ddd/sparql> {
+	    dbr:{{s}} dbo:{{p}} ?o.
+    }
+}
+WHERE {
+    SERVICE <https://ja.dbpedia.org/sparql> {
+	    dbr:{{s}} dbo:{{p}} ?o
+    }
+}

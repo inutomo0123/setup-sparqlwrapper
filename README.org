@@ -1,6 +1,8 @@
 * setup-sparqlwrapper
   DBpediaやローカル環境に構築されているapache jena fusekiにSPARQLクエリをリクエストし、レスポンスを受け取る環境を構築します。
 ** 前提
+   - ubuntu20.04
+   - apache jena fusekiは別途構築されており、試験的にデータセット名:dddがあるものとする。
 
 ** git clone
    リポジトリをクローンしてください。setup-sparqlwrapperというディレクトリ名には依存しませんので、任意の名前に変更しても問題ありません。
@@ -9,8 +11,8 @@ $ git clone https://github.com/inutomo0123/setup-sparqlwrapper.git {任意の名
 #+END_SRC
 
 ** python3のインストール
-   python3の最新安定版を利用したい。ubuntu20.04にはpython3がビルトインされているが、ubuntuが自身がpython3に依存しているためビルトインのpython3に手を加えることは避けたい。
-   ユーザ環境に専用のpython3環境を構築する方法もあるが、別のプロジェクトへの影響を極力減らすため、ここではこのプロジェクト専用のpython3環境を構築する。
+   python3の最新安定版を利用したい。ubuntu20.04にはpython3がビルトインされていますが、ubuntuが自身がpython3に依存しているためビルトインのpython3に手を加えることは避けたいと考えます。
+   ユーザ環境に専用のpython3環境を構築する方法もあるが、別のプロジェクトへの影響を極力減らすため、ここではこのプロジェクト専用のpython3環境を構築します。
    この手順は [[https://devguide.python.org/setup/#setup][Getting Started - Python Developer's Guide]] に従います。
 *** インストール手順の概要
    1. python3のビルド環境をセットアップする。
@@ -56,3 +58,30 @@ $ ./scripts/setup-pip3
 	#+BEGIN_SRC
 $ pip-review --auto
 #+END_SRC
+
+** samples
+
+*** dbpediaへのask,select
+
+	#+BEGIN_SRC
+$ python3 -m samples.dbpedia.ask
+{'head': {'link': []}, 'boolean': True}
+
+$ python3 -m samples.dbpedia.select
+{'head': {'link': [], 'vars': ['o', 'label']}, 'results': {'distinct': False, 'ordered': True, 'bindings': [{'o': {'type': 'uri', 'value': 'http://ja.dbpedia.org/resource/トヨタ自動車女子ソフトボール部'}, 'label': {'type': 'literal', 'xml:lang': 'ja', 'value': 'トヨタ自動車女子ソフトボール部'}}]}}
+
+#+END_SRC
+
+*** fusekiへのask,select
+
+	#+BEGIN_SRC
+$ python3 -m samples.fuseki.ask
+{'head': {}, 'boolean': False}
+
+$ python3 -m samples.fuseki.select
+{'head': {'vars': ['o', 'label']}, 'results': {'bindings': []}}
+
+#+END_SRC
+
+*** fusekiへのinsert
+	只今検証中。
