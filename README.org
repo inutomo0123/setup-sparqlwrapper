@@ -1,6 +1,13 @@
 * setup-sparqlwrapper
   DBpediaやローカル環境に構築されているapache jena fusekiにSPARQLクエリをリクエストし、レスポンスを受け取る環境を構築します。
 ** 前提
+
+** git clone
+   リポジトリをクローンしてください。setup-sparqlwrapperというディレクトリ名には依存しませんので、任意の名前に変更しても問題ありません。
+   #+BEGIN_SRC
+$ git clone https://github.com/inutomo0123/setup-sparqlwrapper.git {任意の名前}
+#+END_SRC
+
 ** python3のインストール
    python3の最新安定版を利用したい。ubuntu20.04にはpython3がビルトインされているが、ubuntuが自身がpython3に依存しているためビルトインのpython3に手を加えることは避けたい。
    ユーザ環境に専用のpython3環境を構築する方法もあるが、別のプロジェクトへの影響を極力減らすため、ここではこのプロジェクト専用のpython3環境を構築する。
@@ -12,10 +19,40 @@
    3. python3をビルドし、インストールする。
 
 *** インストール
+	以下のスクリプトを実行します。
 	#+BEGIN_SRC
 $ ./scripts/setup-python3.sh
-	#+END_SRC
+#+END_SRC
 
+*** python3のアクティベート
+	利用に先立ってpython3へのPATHの追加をする必要があります。手順を簡略化するためのアクティベートスクリプトを実行してください。
+	#+BEGIN_SRC
+$ source ./scripts/activate-python3
+#+END_SRC
 
+** python3パケージのインストール
+   これまでのpython3のインストールとアクティベートにより、このプロジェクト専用のpip環境が構築されています。引き続き、必要なpython3パッケージをインストールします。
 
-** pythonの仮想環境のセットアップ
+   pipでのpython3パッケージのインストール先は以下のディレクトリです。
+
+   #+BEGIN_SRC
+setup-sparqlwrapper/local/lib/python3.10/site-package/
+#+END_SRC
+
+   以下のパッケージをインストールします。
+   - wheel
+   - pip-review
+   - SPARQLWrapper
+   - jinja2
+
+*** インストール
+	以下のスクリプトを実行します。
+	#+BEGIN_SRC
+$ ./scripts/setup-pip3
+#+END_SRC
+
+*** アップデート
+	python3パッケージを最新版アップデートする場合は、以下のコマンドを実行します。
+	#+BEGIN_SRC
+$ pip-review --auto
+#+END_SRC
